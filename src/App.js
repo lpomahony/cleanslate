@@ -65,7 +65,7 @@ It's good to be alive!
 
   return (
     <div className="App">
-      <h1>CleanSlate</h1>
+      <h1>cleanslate</h1>
       <FileOperations 
         onFileUpload={handleFileUpload} 
         onFileExport={handleFileExport}
