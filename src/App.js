@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Fountain } from 'fountain-js';
 import './App.css';
+import FileOperations from './FileOperations';
+
+console.log('THIS IS A TEST LOG FROM APP.JS');
 
 function App() {
   const [rawText, setRawText] = useState("");
@@ -9,18 +12,34 @@ function App() {
   const handleInputChange = (e) => {
     const inputText = e.target.value;
     setRawText(inputText);
+    updateFormattedScript(inputText);
+  };
 
+  const updateFormattedScript = (text) => {
     let fountain = new Fountain();
-    const parsedOutput = fountain.parse(inputText);
-
-    console.log(parsedOutput.html.script); // Log the parsed HTML structure to console
-
+    const parsedOutput = fountain.parse(text);
     setFormattedScript(parsedOutput.html.script);
+  };
+
+  const handleFileUpload = (content) => {
+    setRawText(content);
+    updateFormattedScript(content);
+  };
+
+  const handleFileExport = () => {
+    const element = document.createElement("a");
+    const file = new Blob([rawText], {type: 'text/markdown'});
+    element.href = URL.createObjectURL(file);
+    element.download = "screenplay.md";
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
   };
 
   return (
     <div className="App">
       <h1>Screenplay Editor</h1>
+      <FileOperations onFileUpload={handleFileUpload} onFileExport={handleFileExport} />
       <div className="editor-container">
         <div className="input-panel">
           <textarea

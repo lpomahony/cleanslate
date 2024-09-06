@@ -104,3 +104,22 @@ h2 {
   margin: 0;
   color: #fff; /* White text */
 }
+
+.file-operations {
+  margin-bottom: 20px;
+}
+
+.button {
+  background-color: #444;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.button:hover {
+  background-color: #555;
+}
