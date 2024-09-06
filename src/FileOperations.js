@@ -1,5 +1,7 @@
 import React from 'react';
 import { jsPDF } from "jspdf";
+import { create } from 'xmlbuilder2';
+import { Fountain } from 'fountain-js';
 
 const FileOperations = ({ onFileUpload, onFileExport, rawText, formattedScript }) => {
   const handleFileUpload = (event) => {
@@ -170,6 +172,55 @@ const FileOperations = ({ onFileUpload, onFileExport, rawText, formattedScript }
     doc.save("screenplay.pdf");
   };
 
+  const handleFdxExport = () => {
+    const fountain = new Fountain();
+    const parsedScript = fountain.parse(rawText);
+    
+    const root = create({ version: '1.0', encoding: 'UTF-8' })
+      .ele('FinalDraft', { DocumentType: 'Script', Template: 'No', Version: '3' })
+        .ele('Content');
+
+    parsedScript.html.tokens.forEach(token => {
+      switch(token.type) {
+        case 'scene_heading':
+          root.ele('Paragraph', { Type: 'Scene Heading' })
+            .ele('Text').txt(token.text).up().up();
+          break;
+        case 'action':
+          root.ele('Paragraph', { Type: 'Action' })
+            .ele('Text').txt(token.text).up().up();
+          break;
+        case 'dialogue_begin':
+          root.ele('Paragraph', { Type: 'Character' })
+            .ele('Text').txt(token.name).up().up();
+          break;
+        case 'dialogue':
+          root.ele('Paragraph', { Type: 'Dialogue' })
+            .ele('Text').txt(token.text).up().up();
+          break;
+        case 'parenthetical':
+          root.ele('Paragraph', { Type: 'Parenthetical' })
+            .ele('Text').txt(token.text).up().up();
+          break;
+        case 'transition':
+          root.ele('Paragraph', { Type: 'Transition' })
+            .ele('Text').txt(token.text).up().up();
+          break;
+        // Add more cases as needed
+      }
+    });
+
+    const xml = root.end({ prettyPrint: true });
+
+    const element = document.createElement("a");
+    const file = new Blob([xml], {type: 'application/xml'});
+    element.href = URL.createObjectURL(file);
+    element.download = "screenplay.fdx";
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+  };
+
   return (
     <div className="file-operations">
       <input
@@ -187,6 +238,9 @@ const FileOperations = ({ onFileUpload, onFileExport, rawText, formattedScript }
       </button>
       <button onClick={handlePdfExport} className="button">
         Export PDF
+      </button>
+      <button onClick={handleFdxExport} className="button">
+        Export FDX
       </button>
     </div>
   );
