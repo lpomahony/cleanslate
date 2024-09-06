@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/lpomahony/cleanslate/static/css/main.df085b67.css",
-    "main.js": "/lpomahony/cleanslate/static/js/main.91190146.js",
-    "static/js/453.22f3f62d.chunk.js": "/lpomahony/cleanslate/static/js/453.22f3f62d.chunk.js",
-    "index.html": "/lpomahony/cleanslate/index.html",
-    "main.df085b67.css.map": "/lpomahony/cleanslate/static/css/main.df085b67.css.map",
-    "main.91190146.js.map": "/lpomahony/cleanslate/static/js/main.91190146.js.map",
-    "453.22f3f62d.chunk.js.map": "/lpomahony/cleanslate/static/js/453.22f3f62d.chunk.js.map"
+    "main.css": "/screenplay-editor/static/css/main.df085b67.css",
+    "main.js": "/screenplay-editor/static/js/main.c0b24eb7.js",
+    "static/js/453.64be9eb2.chunk.js": "/screenplay-editor/static/js/453.64be9eb2.chunk.js",
+    "index.html": "/screenplay-editor/index.html",
+    "main.df085b67.css.map": "/screenplay-editor/static/css/main.df085b67.css.map",
+    "main.c0b24eb7.js.map": "/screenplay-editor/static/js/main.c0b24eb7.js.map",
+    "453.64be9eb2.chunk.js.map": "/screenplay-editor/static/js/453.64be9eb2.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.df085b67.css",
-    "static/js/main.91190146.js"
+    "static/js/main.c0b24eb7.js"
   ]
 }
