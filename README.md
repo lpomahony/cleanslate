@@ -1,70 +1,100 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# cleanslate - Screenplay Editor
 
-## Available Scripts
+cleanslate is a screenplay editor built with React and the Fountain.js library, designed to offer a clean and simple interface for writing screenplays. The app offers real-time preview of the screenplay formatted according to industry standards. You can type your screenplay on the left panel, and the right panel will show the properly formatted result.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Two-panel interface**: Write your screenplay in plain text on the left and see the formatted screenplay on the right.
+- **Fountain.js integration**: Supports industry-standard screenplay formatting, including scene headings, action, dialogue, and transitions.
+- **Real-time formatting**: Automatically formats your screenplay as you type.
+- **Dark mode**: User-friendly interface with dark mode for comfortable screenwriting.
+- **Transition handling**: Currently supports the "CUT TO:" transition.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To get started with cleanslate locally, follow these steps:
 
-### `npm test`
+### Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/)
 
-### `npm run build`
+### Clone the Repository
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+git clone https://github.com/lpomahony/cleanslate.git
+cd cleanslate
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Install Dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm install
+```
 
-### `npm run eject`
+### Run Locally
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Start the development server:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+The app will be running at `http://localhost:3000`.
 
 ### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+If you want to deploy the project (for example, to GitHub Pages), run:
 
-### `npm run build` fails to minify
+```bash
+npm run deploy
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This will build the project and deploy it to your GitHub Pages repository.
+
+## Usage
+
+- Write your screenplay on the left panel.
+- See the formatted version on the right panel as you type.
+
+### Syntax Guide
+
+The editor uses Fountain syntax. Here are some quick examples of how to format your script:
+
+- **Scene Heading**: Write `INT.` or `EXT.` at the start of a line for a scene heading.
+  - Example: `INT. HOUSE - DAY`
+- **Character**: Write the character’s name in uppercase before their dialogue.
+  - Example: `PAUL`
+- **Dialogue**: Write the dialogue under the character’s name.
+  - Example:
+    ```
+    PAUL
+    This is an example of dialogue.
+    ```
+- **Transitions**: Start a line with a transition, such as `CUT TO:`.
+
+## Technologies Used
+
+- **React**: The frontend framework used to build the application.
+- **Fountain.js**: A library to parse and format Fountain screenplay markup.
+- **GitHub Pages**: For deployment.
+- **Draft.js**: For managing the plain text input editor.
+
+## Contributing
+
+Contributions are welcome! To contribute:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Commit your changes (`git commit -m 'Add new feature'`).
+4. Push to the branch (`git push origin feature-branch`).
+5. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+Thanks for using cleanslate! We hope this tool helps you bring your screenplays to life.
