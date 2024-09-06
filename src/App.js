@@ -1,60 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import { Editor, EditorState, convertToRaw, convertFromRaw } from 'draft-js';
-import { db } from './firebase';  // Firebase connection
-import { saveToLocalStorage, loadFromLocalStorage } from './storage';  // Local storage utilities
-import 'draft-js/dist/Draft.css';
+import React, { useState } from 'react';
+import { Fountain } from 'fountain-js';
+import './App.css';
 
-const App = () => {
-  const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
+function App() {
+  const [rawText, setRawText] = useState("");
+  const [formattedScript, setFormattedScript] = useState("");
 
-  // Load screenplay from localStorage or Firestore on mount
-  useEffect(() => {
-    // First, attempt to load from local storage
-    const savedContent = loadFromLocalStorage('screenplay');
-    if (savedContent) {
-      const contentState = convertFromRaw(savedContent);
-      setEditorState(EditorState.createWithContent(contentState));
-    } else {
-      // If nothing is in localStorage, load from Firestore
-      const loadScreenplayFromFirestore = async () => {
-        const doc = await db.collection('screenplays').doc('myScreenplay').get();
-        if (doc.exists) {
-          const contentState = convertFromRaw(doc.data().content);
-          setEditorState(EditorState.createWithContent(contentState));
-        }
-      };
-      loadScreenplayFromFirestore();
-    }
-  }, []);
+  const handleInputChange = (e) => {
+    const inputText = e.target.value;
+    setRawText(inputText);
 
-  // Save screenplay to Firestore and localStorage whenever it changes
-  const handleChange = (state) => {
-    setEditorState(state);
+    let fountain = new Fountain();
+    const parsedOutput = fountain.parse(inputText);
 
-    const contentState = state.getCurrentContent();
-    const rawContent = convertToRaw(contentState);
+    console.log(parsedOutput.html.script); // Log the parsed HTML structure to console
 
-    // Save to localStorage
-    saveToLocalStorage('screenplay', rawContent);
-
-    // Save to Firestore
-    saveScreenplayToFirestore(rawContent);
-  };
-
-  // Function to save to Firestore
-  const saveScreenplayToFirestore = async (content) => {
-    await db.collection('screenplays').doc('myScreenplay').set({ content });
+    setFormattedScript(parsedOutput.html.script);
   };
 
   return (
     <div className="App">
       <h1>Screenplay Editor</h1>
-      <Editor
-        editorState={editorState}
-        onChange={handleChange}
-      />
+      <div className="editor-container">
+        <div className="input-panel">
+          <textarea
+            value={rawText}
+            onChange={handleInputChange}
+            placeholder="Type your screenplay here..."
+          />
+        </div>
+        <div className="output-panel">
+          <div
+            className="formatted-script"
+            dangerouslySetInnerHTML={{ __html: formattedScript }}
+          />
+        </div>
+      </div>
     </div>
   );
-};
+}
 
 export default App;
