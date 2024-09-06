@@ -1,14 +1,24 @@
 /* General App Styles (Dark Mode) */
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: #333; /* or whatever your page background color is */
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
 .App {
   font-family: Arial, sans-serif;
   text-align: center;
   background-color: #333; /* Dark background for the whole app */
   color: #fff; /* White text for the whole app */
   min-height: 100vh; /* Ensure it covers the full height */
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
-  margin-bottom: 20px;
+  margin: 20px 0;
   font-family: "Courier New", Courier, monospace; /* Title in Courier font */
   color: #fff;
 }
@@ -16,6 +26,7 @@ h1 {
 /* Editor Container: Split Screen */
 .editor-container {
   display: flex;
+  flex: 1;
   height: 80vh; /* Fill the screen */
   border: 1px solid #444; /* Dark border */
 }
@@ -24,7 +35,7 @@ h1 {
 .input-panel {
   flex: 1;
   border-right: 1px solid #444; /* Dark border for split */
-  padding: 20px;
+  padding: 0; /* Removes padding from the input panel */
   background-color: #222; /* Darker background for text input */
 }
 
@@ -36,8 +47,9 @@ textarea {
   font-size: 16px;
   background-color: #333; /* Dark background for text area */
   color: #fff; /* White text */
-  border: 1px solid #555; /* Darker border for text area */
-  outline: none;
+  border: none; /* Removes the border */
+  outline: none; /* Removes the outline when focused */
+  resize: none; /* Prevents user from resizing the textarea */
 }
 
 /* Right Panel: Formatted Screenplay */
@@ -53,6 +65,7 @@ textarea {
   font-family: "Courier New", Courier, monospace;
   font-size: 12pt;  /* Ensure uniform font size */
   line-height: 1.6;
+  padding: 20px;
   color: #fff; /* White text for screenplay */
 }
 
@@ -106,7 +119,7 @@ h2 {
 }
 
 .file-operations {
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 .button {

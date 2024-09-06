@@ -38,7 +38,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Screenplay Editor</h1>
+      <h1>cleanslate</h1>
       <FileOperations onFileUpload={handleFileUpload} onFileExport={handleFileExport} />
       <div className="editor-container">
         <div className="input-panel">
