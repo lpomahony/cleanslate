@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Fountain } from 'fountain-js';
 import './App.css';
 import FileOperations from './FileOperations';
@@ -8,6 +8,32 @@ console.log('THIS IS A TEST LOG FROM APP.JS');
 function App() {
   const [rawText, setRawText] = useState("");
   const [formattedScript, setFormattedScript] = useState("");
+
+  useEffect(() => {
+    // Set default content with title page when component mounts
+    const defaultContent = `Title: Your Screenplay Title
+Credit: Written by
+Author: Your Name
+Source: Story by...
+Draft date: ${new Date().toLocaleDateString()}
+Contact:
+    Your Name
+    your@email.com
+    (123) 456-7890
+
+
+EXT. MANHATTAN - DAY
+
+JESSE steps out of a taxi.
+
+JESSE
+(yelling)
+It's good to be alive!
+
+`;
+    setRawText(defaultContent);
+    updateFormattedScript(defaultContent);
+  }, []);
 
   const handleInputChange = (e) => {
     const inputText = e.target.value;
@@ -19,6 +45,7 @@ function App() {
     let fountain = new Fountain();
     const parsedOutput = fountain.parse(text);
     setFormattedScript(parsedOutput.html.script);
+    console.log('Updated formatted script:', parsedOutput.html.script);
   };
 
   const handleFileUpload = (content) => {
@@ -38,8 +65,13 @@ function App() {
 
   return (
     <div className="App">
-      <h1>cleanslate</h1>
-      <FileOperations onFileUpload={handleFileUpload} onFileExport={handleFileExport} />
+      <h1>CleanSlate</h1>
+      <FileOperations 
+        onFileUpload={handleFileUpload} 
+        onFileExport={handleFileExport}
+        rawText={rawText}
+        formattedScript={formattedScript}
+      />
       <div className="editor-container">
         <div className="input-panel">
           <textarea

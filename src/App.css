@@ -136,3 +136,20 @@ h2 {
 .button:hover {
   background-color: #555;
 }
+
+.title-page-form {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-page-form input {
+  margin: 5px 0;
+  padding: 5px;
+  width: 300px;
+}
+
+.title-page-form h2 {
+  margin-bottom: 10px;
+}
